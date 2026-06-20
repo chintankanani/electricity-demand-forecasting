@@ -2,82 +2,259 @@
 
 ## Project Overview
 
-This project focuses on forecasting short-term electricity demand using historical electricity consumption and weather data. The objective was to identify key demand drivers and develop predictive models that support planning, resource allocation, and operational decision-making.
+This project investigates short-term electricity demand forecasting using historical electricity consumption and weather data. The objective was to identify key drivers of electricity demand and develop predictive models that support operational planning, resource allocation, and decision-making.
+
+The project applies statistical analysis, feature engineering, Multiple Linear Regression (MLR), and Random Forest algorithms to forecast electricity demand and compare model performance.
+
+---
 
 ## Business Problem
 
-Accurate demand forecasting helps utility providers improve resource planning, optimise operations, and reduce the risk of under- or over-estimating future electricity demand.
+Electricity providers require accurate demand forecasts to efficiently manage energy generation, distribution, and resource allocation.
+
+Inaccurate forecasts can result in:
+
+* Overproduction and unnecessary operational costs
+* Underestimation leading to supply shortages
+* Reduced operational efficiency
+* Poor resource planning
+
+This project aims to develop reliable forecasting models using weather conditions and historical demand patterns.
+
+---
 
 ## Dataset
 
-The project utilised historical electricity demand and weather datasets containing:
+The dataset consists of:
 
-* Electricity demand records
+* Historical electricity demand records
 * Temperature measurements
-* Humidity levels
-* Weather-related variables
-* Date and time information
+* Humidity data
+* Wind speed information
+* Atmospheric pressure
+* Moving averages
+* Time-based variables
+
+Additional lagged variables were created to capture delayed weather effects and temporal dependencies in electricity demand.
+
+---
+
+## Project Objectives
+
+* Analyse historical electricity demand patterns
+* Investigate relationships between weather variables and demand
+* Engineer lagged weather and demand features
+* Build predictive forecasting models
+* Compare Multiple Linear Regression and Random Forest performance
+* Generate actionable business insights for planning and decision-making
+
+---
 
 ## Tools & Technologies
 
-* Python
-* Pandas
-* NumPy
-* Matplotlib
-* Scikit-Learn
-* Jupyter Notebook
+### Programming & Analytics
+
+* R
+* RStudio
+
+### Data Processing & Transformation
+
+* dplyr
+* readr
+* lubridate
+
+### Statistical Analysis
+
+* Descriptive Statistics
+* Skewness Analysis
+* Correlation Analysis
+* Multicollinearity Testing (VIF)
+* Durbin-Watson Test
+* Residual Diagnostics
+
+### Machine Learning & Forecasting
+
+* Multiple Linear Regression (MLR)
+* Random Forest Regression
+* Lag Feature Engineering
+* Predictive Modelling
+
+### Data Visualisation
+
+* ggplot2
+* corrplot
+* ggcorrplot
+
+### Model Evaluation
+
+* RMSE (Root Mean Squared Error)
+* MAE (Mean Absolute Error)
+* MAPE (Mean Absolute Percentage Error)
+* R² (Coefficient of Determination)
+* AIC Model Comparison
+
+---
 
 ## Methodology
 
-### Data Preparation
+### 1. Data Preparation
 
-* Extracted and combined multiple datasets
-* Performed data cleaning and validation
-* Handled missing values and inconsistencies
-* Transformed variables for modelling
+* Imported and structured electricity demand and weather datasets
+* Renamed variables for consistency
+* Handled missing values
+* Removed incomplete observations
+* Performed data validation and quality checks
 
-### Exploratory Data Analysis
+### 2. Feature Engineering
 
-* Analysed electricity demand trends
-* Examined weather impacts on demand
-* Identified seasonal and daily patterns
-* Created visualisations to understand relationships
+Created lagged variables to capture delayed impacts of weather conditions:
 
-### Machine Learning Models
+* Temperature Lag (30 minutes)
+* Temperature Lag (1 hour)
+* Humidity Lag (30 minutes)
+* Humidity Lag (1 hour)
+* Wind Speed Lag (30 minutes)
+* Wind Speed Lag (1 hour)
+* Power Demand Lag Variables
 
-#### Multiple Linear Regression
+### 3. Exploratory Data Analysis
 
-Used to evaluate linear relationships between weather variables and electricity demand.
+Conducted:
+
+* Descriptive statistical analysis
+* Skewness assessment
+* Boxplot analysis
+* Correlation analysis
+* Weather-demand relationship investigation
+
+### 4. Statistical Diagnostics
+
+Validated model assumptions through:
+
+* Residual analysis
+* Durbin-Watson autocorrelation testing
+* Variance Inflation Factor (VIF) analysis
+* Normality assessment
+* Homoscedasticity checks
+
+### 5. Forecasting Models
+
+#### Multiple Linear Regression (MLR)
+
+Developed several regression models using combinations of:
+
+* Current weather conditions
+* Lagged weather variables
+* Historical power demand
+
+Models were evaluated and compared using:
+
+* RMSE
+* R²
+* AIC
 
 #### Random Forest Regression
 
-Applied to capture non-linear relationships and improve prediction accuracy.
+Developed Random Forest models to:
 
-## Results
+* Capture non-linear relationships
+* Improve predictive performance
+* Identify important forecasting variables
 
-* Successfully forecasted electricity demand using historical data
-* Compared model performance using evaluation metrics
-* Identified key variables influencing electricity demand
-* Generated insights to support planning and decision-making
+Variable importance analysis was conducted to determine the strongest demand drivers.
 
-## Key Business Insights
+---
 
-* Weather conditions significantly influence electricity demand.
-* Demand patterns vary across time periods and seasons.
-* Predictive analytics can improve operational planning and resource allocation.
-* Data-driven forecasting supports more informed business decisions.
+## Model Evaluation Metrics
 
-## Project Outcomes
+The forecasting models were evaluated using:
 
-* End-to-end data analytics workflow
-* Data preparation and feature engineering
-* Predictive modelling using machine learning
-* Business-focused insight generation
-* Forecasting for operational planning
+### Mean Absolute Error (MAE)
+
+Measures average prediction error magnitude.
+
+### Root Mean Squared Error (RMSE)
+
+Measures forecast accuracy while penalising larger errors.
+
+### Mean Absolute Percentage Error (MAPE)
+
+Measures forecasting error as a percentage.
+
+### R-Squared (R²)
+
+Measures the proportion of variation explained by the model.
+
+---
+
+## Key Findings
+
+* Historical power demand was one of the strongest predictors of future demand.
+* Weather variables significantly influenced electricity consumption.
+* Lagged weather variables improved forecasting performance.
+* Random Forest captured complex non-linear relationships effectively.
+* Feature engineering substantially improved predictive accuracy.
+
+---
+
+## Business Insights
+
+The analysis demonstrates how predictive analytics can support:
+
+* Electricity demand forecasting
+* Resource allocation planning
+* Capacity management
+* Operational efficiency improvements
+* Data-driven decision-making
+
+By incorporating weather variables and historical demand behaviour, organisations can improve forecast accuracy and make more informed operational decisions.
+
+---
+
+## Repository Structure
+
+```text
+electricity-demand-forecasting/
+│
+├── README.md
+├── demand_forecasting.R
+├── Final_Report.pdf
+├── Dataset/
+│   └── electricity_data.csv
+│
+└── Images/
+    ├── Correlation_Matrix.png
+    ├── Variable_Importance.png
+    ├── Actual_vs_Predicted_MLR.png
+    └── Actual_vs_Predicted_RF.png
+```
+
+## Future Improvements
+
+* Explore advanced time-series models such as ARIMA and Prophet
+* Implement XGBoost and Gradient Boosting models
+* Automate forecasting workflows
+* Develop interactive dashboards using Power BI or Shiny
+* Deploy forecasting models for real-time prediction
+
+---
 
 ## Author
 
-Chintankumar Kanani
+**Chintankumar Kanani**
 
 Master of Applied Business (Business Analytics)
-Unitec Institute of Technology, Auckland, New Zealand
+
+Auckland, New Zealand
+
+### Skills Demonstrated
+
+* Data Cleaning & Transformation
+* Feature Engineering
+* Forecasting
+* Machine Learning
+* Statistical Analysis
+* Data Visualisation
+* Business Analytics
+* Predictive Modelling
+* Insight Generation
